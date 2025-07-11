@@ -15,10 +15,10 @@ jobs:
   perl:
     runs-on: windows-latest
     
-    permissions:
-      id-token: write
-      contents: read
-      attestations: write
+    #permissions:
+    #  id-token: write
+    #  contents: read
+    #  attestations: write
 
     steps:
       - uses: actions/checkout@v4
@@ -30,13 +30,13 @@ jobs:
           install-modules-with: cpanm
           install-modules-args: --with-develop --with-configure --verbose
 
-      - name: run tests
+      - name: Build
         run: |
           #echo 1
           pp -E"say qq{Packed using PAR::Packer}" -o check.exe
           ls
 
-       - name: Attest
-         uses: actions/attest-build-provenance@v2
-         with:
-          subject-path: '${{ github.workspace }}/my-app'
+       #- name: Attest
+       #  uses: actions/attest-build-provenance@v2
+       #  with:
+       #   subject-path: '${{ github.workspace }}/check.exe'
