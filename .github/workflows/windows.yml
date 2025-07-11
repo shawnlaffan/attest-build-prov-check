@@ -14,7 +14,6 @@ env:
 jobs:
   perl:
     runs-on: windows-latest
-    
     #permissions:
     #  id-token: write
     #  contents: read
@@ -33,10 +32,11 @@ jobs:
       - name: Build
         run: |
           #echo 1
-          pp -E"say qq{Packed using PAR::Packer}" -o check.exe
+          pp -o script.exe script.pl
           ls
 
        #- name: Attest
        #  uses: actions/attest-build-provenance@v2
        #  with:
        #   subject-path: '${{ github.workspace }}/check.exe'
+
