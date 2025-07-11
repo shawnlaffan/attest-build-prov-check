@@ -32,13 +32,13 @@ jobs:
       - name: Build
         run: |
           #echo 1
-          pp -o script.exe script.pl
+          pp -o testscript.exe script.pl
           ls
 
       - name: Attest
         uses: actions/attest-build-provenance@v2
         with:
-          subject-path: '${{ github.workspace }}/script.exe'
+          subject-path: '${{ github.workspace }}/testscript.exe'
 
       - name: Upload build artifact
         id: upload
