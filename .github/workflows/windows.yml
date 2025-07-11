@@ -14,7 +14,12 @@ env:
 jobs:
   perl:
     runs-on: windows-latest
-
+    
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
+    
     steps:
       - uses: actions/checkout@v4
 
@@ -28,5 +33,10 @@ jobs:
       - name: run tests
         run: |
           #echo 1
-          perl -E'say join q{ }, @INC'
-          prove -l t
+          pp -E"say qq{Packed using PAR::Packer}" -o check.exe
+          ls
+
+       - name: Attest
+         uses: actions/attest-build-provenance@v2
+         with:
+          subject-path: '${{ github.workspace }}/my-app'
